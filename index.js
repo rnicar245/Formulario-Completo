@@ -3,7 +3,6 @@
     */ 
     
     let formulario = "";
-    let indice = -1;
     let desdeValidarFormulario = false;
 
     let inicio = function(){
