@@ -1,12 +1,7 @@
    /**
      * @author Rafael Jesús Nieto Cardador
     */ 
-    const expresiones = new Map();
-    expresiones.set("correo", /^.+@.+\.[a-z]{2,3}$/);
-    expresiones.set("dni", /^(\d{8})([a-zA-Z]$)/);
-    expresiones.set("fecha" , /^(\d{2})([/-])(\d{2})([/-])(\d{4})$/);
-    expresiones.set("tel", /^\d{3}([ ]?)\d{2}\1\d{2}\1\d{2}$/);
-    expresiones.set("url" , /^http[s]?:\/\/([w]{3}\.)?.+\.[a-z]{2,3}[[\/.+]*|\/]$/);
+    
     let formulario = "";
     let indice = -1;
     let desdeValidarFormulario = false;
@@ -40,19 +35,19 @@
         try{
             switch(id){
                 case "email":
-                    Validar.validarCorreo(elemento.value, expresiones.get("correo"));
+                    Validar.validarCorreo(elemento.value);
                     break;
                 case "dni":
-                    Validar.validarDNI(elemento.value, expresiones.get("dni"));
+                    Validar.validarDNI(elemento.value);
                     break;
                 case "fecha":
-                    Validar.validarFecha(elemento.value, expresiones.get("fecha"));
+                    Validar.validarFecha(elemento.value);
                     break;
                 case "tel":
-                    Validar.validarTel(elemento.value, expresiones.get("tel"));
+                    Validar.validarTel(elemento.value);
                     break;
                 case "url":
-                    Validar.validarUrl(elemento.value, expresiones.get("url"));
+                    Validar.validarUrl(elemento.value);
                     break;
                 case "modulo":
                     Validar.validarModulo(elemento.value);
@@ -64,17 +59,13 @@
                     Validar.validarGrado(elemento);
                     break;
             }
-
-            error.innerHTML = "";
-            return true;
             
+            error.innerHTML = "";    
+            return true;
         }catch(er){
             desdeValidarFormulario ? elemento.focus(): null;
             desdeValidarFormulario = false;
-
             error.innerHTML = er;
-            console.log(er);
-            
             return false;
         }
     }

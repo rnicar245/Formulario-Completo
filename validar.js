@@ -4,17 +4,25 @@
 
 {
     Validar = (function() {
-        function validarCorreo(email, emailReg){
+        const expresiones = new Map();
+        expresiones.set("correo", /^.+@.+\.[a-z]{2,3}$/);
+        expresiones.set("dni", /^(\d{8})([a-zA-Z]$)/);
+        expresiones.set("fecha" , /^(\d{2})([/-])(\d{2})([/-])(\d{4})$/);
+        expresiones.set("tel", /^\d{3}([ ]?)\d{2}\1\d{2}\1\d{2}$/);
+        expresiones.set("url" , /^http[s]?:\/\/([w]{3}\.)?.+\.[a-z]{2,3}[[\/.+]*|\/]$/);
+
+        function validarCorreo(email){
             if(email == ""){
                 throw "ERROR: El correo no puede estar vacío.";
             }
-            if(!emailReg.test(email)){
+            if(!expresiones.get("correo").test(email)){
                 throw "ERROR: El formato del correo es incorrecto (Ej example@gmail.com)."
             }
         }
 
-        function validarDNI(dni, dniReg){
+        function validarDNI(dni){
             const letras = "TRWAGMYFPDXBNJZSQVHLCKET";
+            let dniReg = expresiones.get("dni");
             let dniExec = dniReg.exec(dni);
             if(dni == ""){
                 throw "ERROR: El DNI no puede estar vacío.";
@@ -29,12 +37,11 @@
             }
         }
 
-        function validarFecha (fecha, fechaReg){
-            let fechaExec = fechaReg.exec(fecha);
+        function validarFecha (fecha){
+            let fechaExec = expresiones.get("fecha").exec(fecha);
             if(fecha == ""){
                 throw "ERROR: La fecha no puede estar vacía.";
             }
-
             if(fechaExec == null){
                 throw "ERROR: El formato de la fecha es incorrecto. (DD-MM-AAAA)";
             }
@@ -50,23 +57,23 @@
             }  
         }
 
-        function validarTel (tel, telReg){
+        function validarTel (tel){
             if(tel == ""){
                 throw "ERROR: El teléfono no puede estar vacío.";
             }
             
-            if(!telReg.test(tel)){
+            if(!expresiones.get("tel").test(tel)){
                 throw "ERROR: El formato del número de teléfono es incorrecto (Ej 657 01 23 45 o 657012345).";
             }
              
         }
 
-        function validarUrl (url, urlReg){
+        function validarUrl (url){
             if(url == ""){
                 throw "ERROR: La URL no puede estar vacía.";
             }
             
-            if(!urlReg.test(url)){
+            if(!expresiones.get("url").test(url)){
                 throw "ERROR: El formato de la URL es incorrecto. (Ej https://example.com/example/).";
             }
         }
@@ -86,11 +93,9 @@
         }
 
         function validarGrado (grado){
-            console.log("hola");
             if(!grado.checked && !grado.nextElementSibling.checked){
                 throw "ERROR: Debes elegir un grado.";
             }
-            console.log("adios");
         }
 
         return{
