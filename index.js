@@ -16,6 +16,7 @@
         for(i in formulario){
             if(!isNaN(i)){
                 formulario[i].addEventListener("blur", function(){
+                    console.log(this);
                     validarInput(this);
                 });
             }
@@ -26,6 +27,9 @@
     }
 
     let validarFormulario = function(span){
+        for(elemento of formulario){
+            elemento.dispatchEvent(new Event("blur"));
+        }
         desdeValidarFormulario = true;
         [].slice.call(formulario).every(validarInput) ? span.innerHTML = "Todo está en orden" : span.innerHTML = "";
     }
@@ -56,8 +60,8 @@
                 case "aficion3":
                     Validar.validarAficiones([elemento.previousElementSibling.previousElementSibling, elemento.previousElementSibling, elemento]);
                     break;
-                case "radio":
-                    Validar.validarGrado(elemento.value);
+                case "grado":
+                    Validar.validarGrado(elemento);
                     break;
             }
 
@@ -69,11 +73,10 @@
             desdeValidarFormulario = false;
 
             error.innerHTML = er;
+            console.log(er);
             
             return false;
         }
-        
-
     }
 
     document.addEventListener("DOMContentLoaded", inicio);
