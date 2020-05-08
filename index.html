@@ -13,7 +13,7 @@
 <noscript>
   <p>Para ver la página correctamente, por favor, active JavaScript</p>
 </noscript>
-
+<form id="formulario">
 <label>Correo electrónico: <input class="form" type="text" id="email"/></label>
 <p style="color:red" id="errorCorreo"> </p>
 
@@ -49,7 +49,8 @@
 <input id="grado" type="radio" name="grado" value="Sistemas"> Sistemas<br></label>
 <p style="color:red" id="errorGrado"> </p>
 
-<button id="boton">Validar</button>
+<input type="submit" id="boton" value="Validar" required>
 <p style="color:green" id="validado"> </p>
+</form>
 </body>
 </html>

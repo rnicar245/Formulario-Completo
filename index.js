@@ -1,16 +1,18 @@
    /**
      * @author Rafael Jesús Nieto Cardador
     */ 
-    
     let formulario = "";
     let desdeValidarFormulario = false;
 
     let inicio = function(){
+        document.getElementById("formulario").addEventListener("submit", function (e) {
+            e.preventDefault();
+        });
+
         formulario = document.getElementsByClassName("form");
         for(i in formulario){
             if(!isNaN(i)){
                 formulario[i].addEventListener("blur", function(){
-                    console.log(this);
                     validarInput(this);
                 });
             }
