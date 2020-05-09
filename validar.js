@@ -2,8 +2,8 @@
     * @author Rafael Jesús Nieto Cardador
 */
 
-{
-    Validar = (function() {
+
+    let Validar = (function() {
         const expresiones = new Map();
         expresiones.set("correo", /^.+@.+\.[a-z]{2,3}$/);
         expresiones.set("dni", /^(\d{8})([a-zA-Z]$)/);
@@ -110,4 +110,3 @@
         }
 
     })();
-}
