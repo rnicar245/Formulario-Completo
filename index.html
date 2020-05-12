@@ -14,40 +14,40 @@
   <p>Para ver la página correctamente, por favor, active JavaScript</p>
 </noscript>
 <form id="formulario">
-<label>Correo electrónico: <input class="form" type="text" id="email"/></label>
-<p style="color:red" id="errorCorreo"> </p>
+<label>Correo electrónico: <input class="elementoBlur" type="text" id="email"/></label>
+<span style="color:red" id="errorCorreo"> </span><br><br>
 
-<label>DNI: <input class="form" type="text" id="dni"></label>
-<p style="color:red"style="color:red" id="errorDni"> </p>
+<label>DNI: <input class="elementoBlur" type="text" id="dni"></label>
+<span style="color:red"style="color:red" id="errorDni"> </span><br><br>
 
-<label>Fecha de nacimiento: <input class="form" type="text" id="fecha"/></label>
-<p style="color:red" id="errorFecha"> </p>
+<label>Fecha de nacimiento: <input class="elementoBlur" type="text" id="fecha"/></label>
+<span style="color:red" id="errorFecha"> </span><br><br>
 
-<label>Número de teléfono: <input class="form" type="text" id="tel"/></label>
-<p style="color:red" id="errorTel"> </p>
+<label>Número de teléfono: <input class="elementoBlur" type="text" id="tel"/></label>
+<span style="color:red" id="errorTel"> </span><br><br>
 
-<label>URL: <input class="form" type="text" id="url"/></label>
-<p style="color:red" id="errorURL"> </p>
+<label>URL: <input class="elementoBlur" type="text" id="url"/></label>
+<span style="color:red" id="errorURL"> </span><br><br>
 
-<label>Módulo: <select class="form" id="modulo">
+<label>Módulo: <select class="elementoBlur" id="modulo">
   <option hidden disabled selected value>Elige una opción</option> 
   <option value="DAW">DAW</option> 
   <option value="DIW">DIW</option>
   <option value="DWEC">DWEC</option>
 </select></label>
 
-<p style="color:red" id="errorModulo"> </p>
+<span style="color:red" id="errorModulo"> </span><br><br>
 
-<label>Aficiones<br>
+<label>Aficiones<br><br>
 <input  id="aficion1" type="checkbox" name="aficion1" value="Programar1"> Programar
 <input  id="aficion2" type="checkbox" name="aficion2" value="Programar2"> Programar de pie
-<input class="form" id="aficion3" type="checkbox" name="aficion3" value="Programar3"> Programar con los pies</label>
-<p style="color:red" id="errorAficiones"> </p>
+<input class="elementoBlur" id="aficion3" type="checkbox" name="aficion3" value="Programar3"> Programar con los pies</label>
+<span style="color:red" id="errorAficiones"> </span><br><br>
 
-<label>Grado:<br>
-<input class="form" id="grado" type="radio" name="grado" value="DAW"> DAW
-<input id="grado" type="radio" name="grado" value="Sistemas"> Sistemas<br></label>
-<p style="color:red" id="errorGrado"> </p>
+<label>Grado:<br><br>
+<input class="elementoBlur" id="grado" type="radio" name="grado" value="DAW"> DAW
+<input id="grado" type="radio" name="grado" value="Sistemas"> Sistemas<br><br></label>
+<span style="color:red" id="errorGrado"> </span><br>
 
 <input type="submit" id="boton" value="Validar" required>
 <p style="color:green" id="validado"> </p>

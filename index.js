@@ -2,14 +2,16 @@
      * @author Rafael Jesús Nieto Cardador
     */ 
     let formulario = "";
-    let desdeValidarFormulario = false;
+    let errores = "";
 
     let inicio = function(){
         document.getElementById("formulario").addEventListener("submit", function (e) {
             e.preventDefault();
         });
 
-        formulario = document.getElementsByClassName("form");
+        errores = Array.from(document.getElementsByTagName("span"));
+
+        formulario = document.getElementsByClassName("elementoBlur");
         for(i in formulario){
             if(!isNaN(i)){
                 formulario[i].addEventListener("blur", function(){
@@ -26,8 +28,18 @@
         for(elemento of formulario){
             elemento.dispatchEvent(new Event("blur"));
         }
-        desdeValidarFormulario = true;
-        [].slice.call(formulario).every(validarInput) ? span.innerHTML = "Todo está en orden" : span.innerHTML = "";
+
+        //let error = errores.every((elemento) => elemento.innerHTML == "")
+        let error = true;
+        for(elemento of errores){
+            if(elemento.innerHTML != "" && error){
+                elemento.previousElementSibling.focus();
+                error = false;
+                break;
+            }
+        }
+
+        error ? span.innerHTML = "Todo está en orden" : span.innerHTML = "";
     }
 
     let validarInput = function(elemento){
@@ -64,8 +76,6 @@
             error.innerHTML = "";    
             return true;
         }catch(er){
-            desdeValidarFormulario ? elemento.focus(): null;
-            desdeValidarFormulario = false;
             error.innerHTML = er;
             return false;
         }
