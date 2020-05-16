@@ -1,6 +1,7 @@
    /**
      * @author Rafael Jesús Nieto Cardador
     */ 
+{
     let formulario = "";
     let errores = "";
 
@@ -82,3 +83,4 @@
     }
 
     document.addEventListener("DOMContentLoaded", inicio);
+}
