@@ -5,7 +5,7 @@
 
     let Validar = (function() {
         const expresiones = new Map();
-        expresiones.set("correo", /^.+@.+\.[a-z]{2,3}$/);
+        expresiones.set("correo", /^[1-9a-zA-ZáéíóúÁÉÍÓÚñÑ]+@[1-9a-zA-ZáéíóúÁÉÍÓÚñÑ]+\.[a-z]{2,3}$/);
         expresiones.set("dni", /^(\d{8})([a-zA-Z]$)/);
         expresiones.set("fecha" , /^(\d{2})([/-])(\d{2})([/-])(\d{4})$/);
         expresiones.set("tel", /^\d{3}([ ]?)\d{2}\1\d{2}\1\d{2}$/);

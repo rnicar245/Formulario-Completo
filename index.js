@@ -29,8 +29,6 @@
         for(elemento of formulario){
             elemento.dispatchEvent(new Event("blur"));
         }
-
-        //let error = errores.every((elemento) => elemento.innerHTML == "")
         let error = true;
         for(elemento of errores){
             if(elemento.innerHTML != "" && error){
@@ -50,7 +48,6 @@
         let mensajeError = "";
         switch(id){
             case "email":
-                
                 mensajeError = Validar.validarCorreo(elemento.value);
                 break;
             case "dni":
@@ -60,7 +57,6 @@
                 mensajeError = Validar.validarFecha(elemento.value);
                 break;
             case "tel":
-                console.log(Validar.validarTel(elemento.value));
                 mensajeError = Validar.validarTel(elemento.value);
                 break;
             case "url":
