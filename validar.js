@@ -61,20 +61,24 @@
 
         function validarFecha (fecha){
             let fechaExec = expresiones.get("fecha").exec(fecha);
+
             if(fecha == ""){
                 return "ERROR: La fecha no puede estar vacía.";
             }
+
             if(fechaExec == null){
                 return "ERROR: El formato de la fecha es incorrecto. (DD-MM-AAAA)";
             }
 
-            let fechaObjeto = new Date(`${fechaExec[5]}/${fechaExec[3]}/${fechaExec[1]}`);
+            let [,dia, signo1, mes, signo2, ano] = fechaExec;
+
+            let fechaObjeto = new Date(`${ano}/${mes}/${dia}`);
             
-            if(fechaExec[2] != fechaExec[4]){
+            if(signo1 != signo2){
                 return "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
             }
 
-            if(Number(fechaExec[1]) != fechaObjeto.getDate() || Number(fechaExec[3]) != fechaObjeto.getMonth() +1 || Number(fechaExec[5]) != fechaObjeto.getFullYear()){
+            if(Number(dia) != fechaObjeto.getDate() || Number(mes) != fechaObjeto.getMonth() +1 || Number(ano) != fechaObjeto.getFullYear()){
                 return "ERROR: La fecha es incorrecta (Ejemplo: día 45 de febrero).";
             }  
 
