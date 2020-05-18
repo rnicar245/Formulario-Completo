@@ -6,23 +6,30 @@
     let errores = "";
 
     let inicio = function(){
-        document.getElementById("formulario").addEventListener("submit", function (e) {
+        document.getElementsByTagName("form")[0].addEventListener("submit", function (e) {
             e.preventDefault();
         });
 
         errores = Array.from(document.getElementsByTagName("span"));
 
-        formulario = document.getElementsByClassName("elementoBlur");
-        for(i in formulario){
-            if(!isNaN(i)){
-                formulario[i].addEventListener("blur", function(){
+        formulario = Array.from(document.getElementsByClassName("elementoBlur"));
+        for(elemento of formulario){
+            elemento.addEventListener("blur", function(){
                     validarInput(this);
-                });
-            }
+            });
         }
         document.getElementById("boton").addEventListener("click", function(){
             validarFormulario(this.nextElementSibling)
         });
+
+        document.getElementById("reiniciar").addEventListener("click", function(){
+            location.reload();
+        });
+        /** 
+        document.getElementById("rellenar").addEventListener("click", function(){
+            location.reload();
+        });
+        */
     }
 
     let validarFormulario = function(span){
