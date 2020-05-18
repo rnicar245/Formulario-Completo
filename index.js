@@ -47,43 +47,39 @@
         console.log();
         let id = elemento.id;
         let error = elemento.parentElement.nextElementSibling;
-        console.log(id);
-        try{
-            switch(id){
-                case "email":
-                    Validar.validarCorreo(elemento.value);
-                    break;
-                case "dni":
-                    Validar.validarDNI(elemento.value);
-                    break;
-                case "fecha":
-                    Validar.validarFecha(elemento.value);
-                    break;
-                case "tel":
-                    Validar.validarTel(elemento.value);
-                    break;
-                case "url":
-                    Validar.validarUrl(elemento.value);
-                    break;
-                case "modulo":
-                    Validar.validarModulo(elemento.value);
-                    break;
-                case "aficion1":
-                case "aficion2":
-                case "aficion3":
-                    Validar.validarAficiones([formulario[6], formulario[7], formulario[8]]);
-                    break;
-                case "grado":
-                    Validar.validarGrado(elemento);
-                    break;
-            }
-            
-            error.innerHTML = "";    
-            return true;
-        }catch(er){
-            error.innerHTML = er;
-            return false;
+        let mensajeError = "";
+        switch(id){
+            case "email":
+                
+                mensajeError = Validar.validarCorreo(elemento.value);
+                break;
+            case "dni":
+                mensajeError = Validar.validarDNI(elemento.value);
+                break;
+            case "fecha":
+                mensajeError = Validar.validarFecha(elemento.value);
+                break;
+            case "tel":
+                console.log(Validar.validarTel(elemento.value));
+                mensajeError = Validar.validarTel(elemento.value);
+                break;
+            case "url":
+                mensajeError = Validar.validarUrl(elemento.value);
+                break;
+            case "modulo":
+                mensajeError = Validar.validarModulo(elemento.value);
+                break;
+            case "aficion1":
+            case "aficion2":
+            case "aficion3":
+                mensajeError = Validar.validarAficiones([formulario[6], formulario[7], formulario[8]]);
+                break;
+            case "grado":
+                mensajeError = Validar.validarGrado(elemento);
+                break;
         }
+        
+        error.innerHTML = mensajeError;    
     }
 
     document.addEventListener("DOMContentLoaded", inicio);
