@@ -44,8 +44,10 @@
     }
 
     let validarInput = function(elemento){
+        console.log();
         let id = elemento.id;
         let error = elemento.parentElement.nextElementSibling;
+        console.log(id);
         try{
             switch(id){
                 case "email":
@@ -66,8 +68,10 @@
                 case "modulo":
                     Validar.validarModulo(elemento.value);
                     break;
+                case "aficion1":
+                case "aficion2":
                 case "aficion3":
-                    Validar.validarAficiones([elemento.previousElementSibling.previousElementSibling, elemento.previousElementSibling, elemento]);
+                    Validar.validarAficiones([formulario[6], formulario[7], formulario[8]]);
                     break;
                 case "grado":
                     Validar.validarGrado(elemento);
