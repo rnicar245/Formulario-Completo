@@ -42,7 +42,6 @@
     }
 
     let validarInput = function(elemento){
-        console.log();
         let id = elemento.id;
         let error = elemento.parentElement.nextElementSibling;
         let mensajeError = "";
@@ -74,7 +73,7 @@
             case "aficion1":
             case "aficion2":
             case "aficion3":
-                mensajeError = Validar.validarAficiones([formulario[6], formulario[7], formulario[8]]);
+                mensajeError = Validar.validarAficiones([formulario[8], formulario[9], formulario[10]]);
                 break;
             case "grado":
                 mensajeError = Validar.validarGrado(elemento);
