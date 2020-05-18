@@ -6,7 +6,7 @@
     let Validar = (function() {
         const expresiones = new Map();
         expresiones.set("correo", /^[1-9a-zA-ZáéíóúÁÉÍÓÚñÑ]+@[1-9a-zA-ZáéíóúÁÉÍÓÚñÑ]+\.[a-z]{2,3}$/);
-        expresiones.set("dni", /^(\d{8})([a-zA-Z]$)/);
+        expresiones.set("dni", /^(\d{8}) ?([a-zA-Z]$)/); //12345678 A
         expresiones.set("fecha" , /^(\d{2})([/-])(\d{2})([/-])(\d{4})$/);
         expresiones.set("tel", /^\d{3}([ ]?)\d{2}\1\d{2}\1\d{2}$/);
         expresiones.set("url" , /^http[s]?:\/\/([w]{3}\.)?.+\.[a-z]{2,3}[[\/.+]*|\/]$/);
@@ -41,22 +41,27 @@
         }
 
         function validarDNI(dni){
-            const letras = "TRWAGMYFPDXBNJZSQVHLCKET";
-            let dniReg = expresiones.get("dni");
-            let dniExec = dniReg.exec(dni);
-            if(dni == ""){
-                return "ERROR: El DNI no puede estar vacío.";
-            }
-            
-            if(dniExec == null){
+            try{
+                const letras = "TRWAGMYFPDXBNJZSQVHLCKET";
+                let dniReg = expresiones.get("dni");
+                
+                if(dni == ""){
+                    return "ERROR: El DNI no puede estar vacío.";
+                }
+
+                let [,num, letra] = dniReg.exec(dni);
+
+                if(letra.toUpperCase() != letras[num%23]){
+                    return "ERROR: La letra introducida no es correcta.";
+                }
+    
+                return "";
+            }catch(er){
+                console.log(er);
                 return "ERROR: El formato del DNI es incorrecto.";
             }
+           
             
-            if(dniExec[2] != letras[dniExec[1]%23]){
-                return "ERROR: La letra introducida no es correcta.";
-            }
-
-            return "";
         }
 
         function validarFecha (fecha){

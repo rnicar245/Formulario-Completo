@@ -8,6 +8,7 @@
     let inicio = function(){
         document.getElementsByTagName("form")[0].addEventListener("submit", function (e) {
             e.preventDefault();
+            validarFormulario(this.nextElementSibling);         
         });
 
         errores = Array.from(document.getElementsByTagName("span"));
@@ -19,7 +20,7 @@
             });
         }
         document.getElementById("boton").addEventListener("click", function(){
-            validarFormulario(this.nextElementSibling)
+            
         });
 
         document.getElementById("reiniciar").addEventListener("click", function(){
@@ -36,15 +37,13 @@
         for(elemento of formulario){
             elemento.dispatchEvent(new Event("blur"));
         }
-        let error = true;
+        //usar find
         for(elemento of errores){
-            if(elemento.innerHTML != "" && error){
+            if(elemento.innerHTML != ""){
                 elemento.previousElementSibling.focus();
-                error = false;
                 break;
             }
         }
-
         error ? span.innerHTML = "Todo está en orden" : span.innerHTML = "";
     }
 
