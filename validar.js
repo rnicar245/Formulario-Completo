@@ -11,6 +11,25 @@
         expresiones.set("tel", /^\d{3}([ ]?)\d{2}\1\d{2}\1\d{2}$/);
         expresiones.set("url" , /^http[s]?:\/\/([w]{3}\.)?.+\.[a-z]{2,3}[[\/.+]*|\/]$/);
 
+        function validarTexto(texto){
+            if(texto == ""){
+                return "ERROR: El texto no puede estar vacío.";
+            }
+            return "";
+        }
+        
+        function validarNum(num){
+            if(num == ""){
+                return "ERROR: El número no puede estar vacío.";
+            }
+
+            if(isNaN(num)){
+                return "ERROR: La cadena introducida no es numérica."
+            }
+
+            return "";
+        }
+
         function validarCorreo(email){
             if(email == ""){
                 return "ERROR: El correo no puede estar vacío.";
@@ -110,6 +129,8 @@
         }
 
         return{
+            validarTexto: validarTexto,
+            validarNum: validarNum,
             validarCorreo: validarCorreo,
             validarDNI: validarDNI,
             validarFecha: validarFecha,

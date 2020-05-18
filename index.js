@@ -47,6 +47,12 @@
         let error = elemento.parentElement.nextElementSibling;
         let mensajeError = "";
         switch(id){
+            case "texto":
+                mensajeError = Validar.validarTexto(elemento.value);
+                break;
+            case "num":
+                mensajeError = Validar.validarNum(elemento.value);
+                break;
             case "email":
                 mensajeError = Validar.validarCorreo(elemento.value);
                 break;
