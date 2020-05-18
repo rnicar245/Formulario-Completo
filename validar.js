@@ -28,7 +28,7 @@
                 throw "ERROR: El DNI no puede estar vacío.";
             }
             
-            if(!dniReg.test(dni)){
+            if(dniExec == null){
                 throw "ERROR: El formato del DNI es incorrecto.";
             }
             
@@ -86,6 +86,7 @@
         }
 
         function validarAficiones (aficiones){
+            console.log("holachula");
             if(!aficiones[0].checked && !aficiones[1].checked && !aficiones[2].checked){
                 throw "ERROR: Debes elegir al menos una afición.";
             }
