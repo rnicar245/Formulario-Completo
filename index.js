@@ -12,6 +12,9 @@
         });
 
         errores = Array.from(document.getElementsByTagName("span"));
+        errores.forEach(elemento => {
+            elemento.style.color = "red";
+        });
 
         formulario = Array.from(document.getElementsByClassName("elementoBlur"));
         for(elemento of formulario){
@@ -26,11 +29,21 @@
         document.getElementById("reiniciar").addEventListener("click", function(){
             location.reload();
         });
-        /** 
+        
         document.getElementById("rellenar").addEventListener("click", function(){
-            location.reload();
+            let cadenasRellenar = ["a", "1", "hola@gmail.com", "07930497M", "01/01/1999", "(+1031)-655-55-55-55", "https://www.hola.com"];
+            for(elemento of formulario){
+                if(elemento.type == "text"){
+                    elemento.value = cadenasRellenar[0];
+                    cadenasRellenar.shift();
+                }else if(elemento.type == "checkbox" || elemento.type == "radio"){
+                    elemento.checked = true;
+                }else{
+                    elemento.value = "DAW";
+                }
+            }
         });
-        */
+        
     }
 
     let validarFormulario = function(span){
@@ -38,13 +51,13 @@
             elemento.dispatchEvent(new Event("blur"));
         }
         //usar find
-        for(elemento of errores){
-            if(elemento.innerHTML != ""){
-                elemento.previousElementSibling.focus();
-                break;
-            }
-        }
-        error ? span.innerHTML = "Todo está en orden" : span.innerHTML = "";
+        let error = errores.find(elemento  => elemento.innerHTML != "");
+        if(error == undefined){
+            span.innerHTML = "Todo está en orden";
+        }else{
+            error.previousElementSibling.focus();
+            span.innerHTML = "";
+        } 
     }
 
     let validarInput = function(elemento){
@@ -82,7 +95,7 @@
                 mensajeError = Validar.validarAficiones([formulario[8], formulario[9], formulario[10]]);
                 break;
             case "grado":
-                mensajeError = Validar.validarGrado(elemento);
+                mensajeError = Validar.validarGrado([formulario[11], formulario[12]]);
                 break;
         }
         
